@@ -1,0 +1,38 @@
+
+@main("Insumos") {
+    
+    <div ng-app="myApp" ng-controller="InsumoCtrl as vm">
+         <h2>Insumos</h2>
+        <input ng-model="vm.insumo.nombre" placeholder="Nombre" type="text" name="nombre"/>
+        <input ng-model="vm.insumo.stock" placeholder="Cantidad" type="text" name="stock"/>
+
+        <button ng-click="vm.addInsumo()" ng-show="vm.modo=='normal'">Crear</button>    
+        <button ng-click="vm.updateInsumo()" ng-show="vm.modo=='edit'">Guardar</button>
+        <button ng-click="vm.cancelar()" ng-show="vm.modo=='edit'">Cancelar</button>
+        
+        
+        <br>
+    
+        <h3>Lista de Insumos</h3>
+        <table>
+            <tr>
+              <td>Nombre</td>
+              <td>Cantidad</td>
+            </tr>
+            
+            <tr ng-repeat="ins in vm.insumos">
+              <td>{{ ins.nombre }}</td>
+              <td>{{ ins.stock }}</td>
+              <td>
+                <button ng-click="vm.deleteProducto(ins)">
+                    X
+                </button>
+                  <button ng-click="vm.editInsumo(ins)">
+                    E
+                </button>
+              </td>
+            </tr>
+          </table>
+      </div>
+
+}

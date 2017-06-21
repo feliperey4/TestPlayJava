@@ -1,4 +1,4 @@
-name := "test1"
+name := "MiProyecto"
 
 version := "1.0-SNAPSHOT"
 

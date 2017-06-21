@@ -1,0 +1,34 @@
+
+@main("Ventas") {
+
+    <div ng-app="myApp" ng-controller="VentaCtrl as vm">
+         <h2>Ventas</h2>
+        <input ng-model="vm.venta.comprador" placeholder="Comprador" type="text" name="Comprador"/>
+        <select name="productos" id="productos" ng-model="vm.comboProducto">
+            <option value="" selected="">---Please select---</option>
+            <option ng-repeat="option in vm.productos" value="{{option.idProducto}}">{{option.nombre}}</option>
+        </select>
+        <input ng-model="vm.venta.cantidad" placeholder="Cantidad" type="text" name="Cantidad"/>
+
+        <button ng-click="vm.addVenta()" >Registrar</button>    
+
+        
+        <br>
+    
+        <h3>Lista de Ventas</h3>
+        <table>
+            <tr>
+              <td>Comprador</td>
+              <td>Producto</td>
+              <td>Cantidad</td>
+            </tr>
+            
+            <tr ng-repeat="vent in vm.ventas">
+              <td>{{ vent.comprador }}</td>
+              <td>{{ vent.producto.nombre }}</td>
+              <td>{{ vent.cantidad }}</td>
+            </tr>
+          </table>
+      </div>
+
+}

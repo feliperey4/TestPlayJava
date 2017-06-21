@@ -3,7 +3,33 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
+#GET     /                           controllers.Application.index()
+
+GET     /producto                   controllers.Application.productos()
+
+GET     /insumo                   controllers.Application.insumos()
+
+GET     /venta                   controllers.Application.ventas()
+
+POST    /producto                   controllers.Application.addProducto()
+
+POST    /deleteProducto             controllers.Application.deleteProducto()
+
+POST    /editProducto             controllers.Application.editProducto()
+
+GET     /productos                  controllers.Application.getProductos()
+
+GET     /insumos                    controllers.Application.getInsumos()
+
+GET     /ventas                    controllers.Application.getVentas()
+
+POST    /insumo                   controllers.Application.addInsumo()
+
+POST    /deleteInsumo             controllers.Application.deleteInsumo()
+
+POST    /editInsumo             controllers.Application.editInsumo()
+
+POST    /venta                   controllers.Application.addVenta()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
