@@ -13,7 +13,9 @@ public enum MsjLogs {
     
      SERVICE_STARTED("%s | Service started"),
      SERVICE_END_OK("%s | Service finished succesfully"),
-     SERVICE_END_ERROR("%s | Service finished with Error");
+     SERVICE_END_ERROR("%s | Service finished with Error"),
+     
+     OPEN_VIEW("Open view: %s");
      
      private String msj;
      

@@ -28,14 +28,17 @@ public class Application extends Controller {
     // Vistas
     /////////////////////////////////
     public static Result productos() {
+        Logger.debug(MsjLogs.buildMsj(MsjLogs.OPEN_VIEW, "productos"));
         return ok(productos.render());
     }
     
     public static Result insumos() {
+        Logger.debug(MsjLogs.buildMsj(MsjLogs.OPEN_VIEW, "insumos"));
         return ok(insumos.render());
     }
     
     public static Result ventas() {
+        Logger.debug(MsjLogs.buildMsj(MsjLogs.OPEN_VIEW, "ventas"));
         return ok(ventas.render());
     }
     
