@@ -30,14 +30,23 @@ controllers.controller('VentaCtrl', ['$scope','$http', function ($scope,$http) {
     ////////////////////////////////////
 
     vm.addVenta=function() {
+        if(!vm.comboProducto){
+            alert("Seleccione un producto.");
+            return;
+        }
+        for(i in vm.productos){
+            if(vm.comboProducto===vm.productos[i].idProducto){
+               vm.venta.producto= vm.productos[i];
+               break;
+           }
+        }
         // Validacion de campos vacios.
-        if(vm.venta.comprador==='' || vm.venta.cantidad<0 || vm.comboProducto<1){
+        if(vm.venta.comprador==='' || vm.venta.cantidad<0 || vm.venta.producto.nombre===''){
             alert("Los campos no pueden estar vacios.");
             return;
         }
         
         //Valida cantidad de insumos.
-        vm.venta.producto=vm.productos[vm.comboProducto-1];
         for(i in vm.venta.producto.insumos){
             if(vm.venta.producto.insumos[i].stock-vm.venta.cantidad<0){
                 alert("Insumos insuficientes.");

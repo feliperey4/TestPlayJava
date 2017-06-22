@@ -1,4 +1,4 @@
-name := "MiProyecto"
+name := "TestPlayJava"
 
 version := "1.0-SNAPSHOT"
 

@@ -1,72 +1,95 @@
 
 @main("Productos") {
-
-    
-    
-    
-    <div ng-app="myApp" ng-controller="ProductoCtrl as vm">
-         <h2>Productos</h2>
-        <input ng-model="vm.producto.nombre" placeholder="Nombre" type="text" name="nombre"/>
-        <input ng-model="vm.producto.descripcion" placeholder="Descripci&oacute;n" type="text" name="descripcion"/>
-
-        <button ng-click="vm.addProducto()" ng-show="vm.modo=='normal'">Crear</button>    
-        <button ng-click="vm.updateProducto()" ng-show="vm.modo=='edit'">Guardar</button>
-        <button ng-click="vm.cancelarProducto()" ng-show="vm.modo=='edit'">Cancelar</button>
+   
+    <div class="container" ng-app="myApp" ng-controller="ProductoCtrl as vm">
         
-        <table>
-            <tr>
-                <td>
-                    <h3>Insumos Escogidos</h3>
-                    <table>
-                        <tr ng-repeat="insProd in vm.producto.insumos">
-                          <td>{{ insProd.nombre }}</td>
-                          <td>
-                            <button ng-click="vm.deleteInsumoProducto(insProd)">
-                                -
-                            </button>
-                          </td>
-                        </tr>
-                    </table>
-                </td>
-              <td>
-                  <h3>Insumos Disponibles</h3>
-                  <table>
-                    <tr ng-repeat="insumo in vm.insumos">
-                      <td>{{ insumo.nombre }}</td>
+        <div class="container jumbotron">
+            <div class="page-header"><h1>Producto</h1></div>
+            
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Nombre:</label>
+                        <input class="form-control" ng-model="vm.producto.nombre" placeholder="Nombre" type="text" name="nombre"/>
+                    </div>
+                    <div class="form-group">
+                        <label>Descripci&oacute;n:</label>
+                        <textarea class="form-control" rows="5" ng-model="vm.producto.descripcion" name="descripcion"></textarea>
+                    </div>
+                    <p>
+                        <button type="button" class="btn btn-primary" ng-click="vm.addProducto()" ng-show="vm.modo=='normal'">Crear</button>    
+                        <button type="button" class="btn btn-success" ng-click="vm.updateProducto()" ng-show="vm.modo=='edit'">Guardar</button>
+                        <button type="button" class="btn btn-danger" ng-click="vm.cancelarProducto()" ng-show="vm.modo=='edit'">Cancelar</button>
+                    </p>
+                </div>
+                
+                <div >
+                    <h3>Insumos</h3>
+                <div class="col-md-3">
+                    <label>Escogidos</label>
+                    <div class="tabla-sel-insumo">
+                        <table class="table">
+                            <tbody>
+                                <tr ng-repeat="insProd in vm.producto.insumos">
+                                  <td>{{ insProd.nombre }}</td>
+                                  <td>
+                                    <button class="btn btn-danger btn-xs" ng-click="vm.deleteInsumoProducto(insProd)">
+                                        <i class="glyphicon glyphicon-remove"></i>
+                                    </button>
+                                  </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <label>Disponibles</label>
+                    <div class="tabla-sel-insumo">
+                        <table class="table">
+                            <tbody>
+                            <tr ng-repeat="insumo in vm.insumos">
+                                <td>{{ insumo.nombre }}</td>
+                                <td>
+                                  <button class="btn btn-success btn-xs" ng-click="vm.addInsumoProducto(insumo)">
+                                      <i class="glyphicon glyphicon-ok"></i>
+                                  </button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    
+        <div class="page-header"><h2>Lista de Productos</h2></div>
+        <div class="tabla-general">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Descripci&oacute;n</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="prod in vm.productos">
+                      <td>{{ prod.nombre }}</td>
+                      <td>{{ prod.descripcion }}</td>
                       <td>
-                        <button ng-click="vm.addInsumoProducto(insumo)">
-                            +
+                        <button class="btn btn-default btn-xs" ng-click="vm.editProducto(prod)">
+                            <i class="glyphicon glyphicon-pencil"></i>
                         </button>
+                        <button class="btn btn-danger btn-xs" ng-click="vm.deleteProducto(prod)">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </button>                   
                       </td>
                     </tr>
-                </table>
-              </td>
-            </tr>
-        </table>
-        
-        
-        <br>
-    
-        <h3>Lista de Productos</h3>
-        <table>
-            <tr>
-              <td>Nombre</td>
-              <td>Descripci&oacute;n</td>
-            </tr>
-            
-            <tr ng-repeat="prod in vm.productos">
-              <td>{{ prod.nombre }}</td>
-              <td>{{ prod.descripcion }}</td>
-              <td>
-                <button ng-click="vm.deleteProducto(prod)">
-                    X
-                </button>
-                  <button ng-click="vm.editProducto(prod)">
-                    E
-                </button>
-              </td>
-            </tr>
-          </table>
+                </tbody>
+              </table>
+          </div>
       </div>
 
 }

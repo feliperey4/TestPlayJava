@@ -27,7 +27,7 @@ POST    /insumo                   controllers.Application.addInsumo()
 
 POST    /deleteInsumo             controllers.Application.deleteInsumo()
 
-POST    /editInsumo             controllers.Application.editInsumo()
+POST    /editInsumo               controllers.Application.editInsumo()
 
 POST    /venta                   controllers.Application.addVenta()
 

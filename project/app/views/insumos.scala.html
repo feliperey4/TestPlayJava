@@ -1,38 +1,54 @@
 
 @main("Insumos") {
     
-    <div ng-app="myApp" ng-controller="InsumoCtrl as vm">
-         <h2>Insumos</h2>
-        <input ng-model="vm.insumo.nombre" placeholder="Nombre" type="text" name="nombre"/>
-        <input ng-model="vm.insumo.stock" placeholder="Cantidad" type="text" name="stock"/>
-
-        <button ng-click="vm.addInsumo()" ng-show="vm.modo=='normal'">Crear</button>    
-        <button ng-click="vm.updateInsumo()" ng-show="vm.modo=='edit'">Guardar</button>
-        <button ng-click="vm.cancelar()" ng-show="vm.modo=='edit'">Cancelar</button>
-        
-        
-        <br>
-    
-        <h3>Lista de Insumos</h3>
-        <table>
-            <tr>
-              <td>Nombre</td>
-              <td>Cantidad</td>
-            </tr>
+    <div class="container" ng-app="myApp" ng-controller="InsumoCtrl as vm">
+        <div class="container jumbotron">
+            <div class="page-header"><h1>Insumo</h1></div>
             
-            <tr ng-repeat="ins in vm.insumos">
-              <td>{{ ins.nombre }}</td>
-              <td>{{ ins.stock }}</td>
-              <td>
-                <button ng-click="vm.deleteProducto(ins)">
-                    X
-                </button>
-                  <button ng-click="vm.editInsumo(ins)">
-                    E
-                </button>
-              </td>
-            </tr>
-          </table>
+            <div class="padding-parametros">
+                <div class="form-group">
+                    <label>Nombre:</label>
+                    <input class="form-control" ng-model="vm.insumo.nombre" placeholder="Nombre" type="text" name="nombre"/>
+                </div>
+                <div class="form-group">
+                    <label>Cantidad:</label>
+                    <input class="form-control" ng-model="vm.insumo.stock" placeholder="Cantidad" type="text" name="stock"/>
+                </div>
+                <p>
+                    <button type="button" class="btn btn-primary" ng-click="vm.addInsumo()" ng-show="vm.modo=='normal'">Crear</button>    
+                    <button type="button" class="btn btn-success" ng-click="vm.updateInsumo()" ng-show="vm.modo=='edit'">Guardar</button>
+                    <button type="button" class="btn btn-danger" ng-click="vm.cancelar()" ng-show="vm.modo=='edit'">Cancelar</button>
+                </p>
+            </div>
+        </div>
+        
+        
+        <div class="page-header"><h2>Lista de Insumos</h2></div>
+        
+        <div class="tabla-general">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                      <th>Nombre</th>
+                      <th>Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="ins in vm.insumos">
+                  <td>{{ ins.nombre }}</td>
+                  <td>{{ ins.stock }}</td>
+                  <td>
+                    <button class="btn btn-default btn-xs" ng-click="vm.editInsumo(ins)">
+                       <i class="glyphicon glyphicon-pencil"></i>
+                    </button>
+                    <button class="btn btn-danger btn-xs" ng-click="vm.deleteProducto(ins)">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+          </div>
       </div>
 
 }

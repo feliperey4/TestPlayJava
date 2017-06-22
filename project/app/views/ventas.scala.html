@@ -1,34 +1,55 @@
 
 @main("Ventas") {
 
-    <div ng-app="myApp" ng-controller="VentaCtrl as vm">
-         <h2>Ventas</h2>
-        <input ng-model="vm.venta.comprador" placeholder="Comprador" type="text" name="Comprador"/>
-        <select name="productos" id="productos" ng-model="vm.comboProducto">
-            <option value="" selected="">---Please select---</option>
-            <option ng-repeat="option in vm.productos" value="{{option.idProducto}}">{{option.nombre}}</option>
-        </select>
-        <input ng-model="vm.venta.cantidad" placeholder="Cantidad" type="text" name="Cantidad"/>
-
-        <button ng-click="vm.addVenta()" >Registrar</button>    
-
-        
-        <br>
-    
-        <h3>Lista de Ventas</h3>
-        <table>
-            <tr>
-              <td>Comprador</td>
-              <td>Producto</td>
-              <td>Cantidad</td>
-            </tr>
+    <div class="container" ng-app="myApp" ng-controller="VentaCtrl as vm">
+        <div class="container jumbotron">
+            <div class="page-header"><h1>Venta</h1></div>
             
-            <tr ng-repeat="vent in vm.ventas">
-              <td>{{ vent.comprador }}</td>
-              <td>{{ vent.producto.nombre }}</td>
-              <td>{{ vent.cantidad }}</td>
-            </tr>
-          </table>
+            <div class="padding-parametros">
+                <div class="form-group">
+                    <label>Comprador:</label>
+                    <input class="form-control" ng-model="vm.venta.comprador" placeholder="Comprador" type="text" name="Comprador"/>
+                </div>
+                <div class="form-group">
+                    <label>Producto:</label>
+                    <select class="form-control" name="productos" id="productos" ng-model="vm.comboProducto">
+                        <option value="" selected="">---Please select---</option>
+                        <option ng-repeat="option in vm.productos" value="{{option.idProducto}}">{{option.nombre}}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Cantidad:</label>
+                    <input class="form-control" ng-model="vm.venta.cantidad" placeholder="Cantidad" type="text" name="Cantidad"/>
+                </div>
+                
+                <p>
+                    <button type="button" class="btn btn-primary" ng-click="vm.addVenta()" >Registrar</button>    
+                </p>
+            </div>
+        </div>
+        
+        
+    
+        <div class="page-header"><h2>Lista de Ventas</h2></div>
+        
+        <div class="tabla-general">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                      <th>Comprador</th>
+                      <th>Producto</th>
+                      <th>Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="vent in vm.ventas">
+                  <td>{{ vent.comprador }}</td>
+                  <td>{{ vent.producto.nombre }}</td>
+                  <td>{{ vent.cantidad }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
       </div>
 
 }

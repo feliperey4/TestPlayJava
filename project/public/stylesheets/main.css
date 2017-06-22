@@ -1,0 +1,23 @@
+body {
+  padding-top: 40px;
+  padding-bottom: 30px;
+}
+
+.padding-parametros {
+    padding-right: 40%;
+}
+
+.container .jumbotron, .container-fluid .jumbotron {
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+.tabla-sel-insumo{
+    max-height:150px;
+    overflow-y:auto;
+}
+
+.tabla-general{
+    max-height:1000px;
+    overflow-y:auto;
+}
