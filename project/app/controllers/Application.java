@@ -1,5 +1,6 @@
 package controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 import models.Insumo;
 import models.Producto;
@@ -8,11 +9,17 @@ import play.data.Form;
 import play.db.ebean.Model;
 import static play.libs.Json.toJson;
 import play.mvc.*;
+import play.Logger.ALogger;
+import play.Logger;
+import utils.MsjLogs;
 
 import views.html.*;
 
 public class Application extends Controller {
-
+    
+   
+    
+    
     public static Result index() {
         return ok(index.render("Your new application is ready."));
     }
@@ -36,7 +43,14 @@ public class Application extends Controller {
     Funcion para retornar la lista de los productos disponibles.
     */
     public static Result getProductos(){
-        List<Producto> productos = new Model.Finder(String.class, Producto.class).all();
+        Logger.debug(MsjLogs.buildMsj(MsjLogs.SERVICE_STARTED, "getProductos"));
+        List<Producto> productos = new ArrayList<Producto>();
+        try{
+            productos = new Model.Finder(String.class, Producto.class).all();
+            Logger.debug(MsjLogs.buildMsj(MsjLogs.SERVICE_END_OK, "getProductos"));
+        }catch(Exception e){
+            Logger.error(MsjLogs.buildMsj(MsjLogs.SERVICE_END_ERROR, "getProductos"),e);
+        }
         return ok(toJson(productos));
     }
     
@@ -44,8 +58,14 @@ public class Application extends Controller {
     Funcion para agregar un producto.
     */
     public static Result addProducto(){
-        Producto producto= Form.form(Producto.class).bindFromRequest().get();
-        producto.save();
+        Logger.debug(MsjLogs.buildMsj(MsjLogs.SERVICE_STARTED, "addProductos"));
+        try{
+            Producto producto= Form.form(Producto.class).bindFromRequest().get();
+            producto.save();
+            Logger.debug(MsjLogs.buildMsj(MsjLogs.SERVICE_END_OK, "addProductos"));
+        }catch(Exception e){
+            Logger.error(MsjLogs.buildMsj(MsjLogs.SERVICE_END_ERROR, "addProductos"),e);
+        }
         return ok();
     }
     
@@ -53,8 +73,14 @@ public class Application extends Controller {
     Funcion para eliminar un producto.
     */
     public static Result deleteProducto(){
-        Producto producto= Form.form(Producto.class).bindFromRequest().get();
-        producto.delete();
+        Logger.debug(MsjLogs.buildMsj(MsjLogs.SERVICE_STARTED, "deleteProductos"));
+        try{
+            Producto producto= Form.form(Producto.class).bindFromRequest().get();
+            producto.delete();
+            Logger.debug(MsjLogs.buildMsj(MsjLogs.SERVICE_END_OK, "deleteProductos"));
+        }catch(Exception e){
+            Logger.error(MsjLogs.buildMsj(MsjLogs.SERVICE_END_ERROR, "deleteProducto"),e);
+        }
         return ok();
     }
 
@@ -62,8 +88,14 @@ public class Application extends Controller {
     Funcion para modificar un producto.
     */
     public static Result editProducto(){
-        Producto producto= Form.form(Producto.class).bindFromRequest().get();
-        producto.update();
+        Logger.debug(MsjLogs.buildMsj(MsjLogs.SERVICE_STARTED, "editProductos"));
+        try{
+            Producto producto= Form.form(Producto.class).bindFromRequest().get();
+            producto.update();
+            Logger.debug(MsjLogs.buildMsj(MsjLogs.SERVICE_END_OK, "editProductos"));
+        }catch(Exception e){
+            Logger.error(MsjLogs.buildMsj(MsjLogs.SERVICE_END_ERROR, "editProducto"),e);
+        }
         return ok();
     }
     
@@ -71,7 +103,14 @@ public class Application extends Controller {
     Funcion para retornar la lista de los insumos disponibles.
     */
     public static Result getInsumos(){
-        List<Insumo> insumos = new Model.Finder(String.class, Insumo.class).all();
+        Logger.debug(MsjLogs.buildMsj(MsjLogs.SERVICE_STARTED, "getInsumos"));
+        List<Insumo> insumos = new ArrayList<Insumo>();
+        try{
+            insumos = new Model.Finder(String.class, Insumo.class).all();
+            Logger.debug(MsjLogs.buildMsj(MsjLogs.SERVICE_END_OK, "getInsumos"));
+        }catch(Exception e){
+            Logger.error(MsjLogs.buildMsj(MsjLogs.SERVICE_END_ERROR, "getInsumos"),e);
+        }
         return ok(toJson(insumos));
     }
     
@@ -79,8 +118,14 @@ public class Application extends Controller {
     Funcion para agregar un insumo.
     */
     public static Result addInsumo(){
-        Insumo insumo= Form.form(Insumo.class).bindFromRequest().get();
-        insumo.save();
+        Logger.debug(MsjLogs.buildMsj(MsjLogs.SERVICE_STARTED, "addInsumo"));
+        try{
+            Insumo insumo= Form.form(Insumo.class).bindFromRequest().get();
+            insumo.save();
+            Logger.debug(MsjLogs.buildMsj(MsjLogs.SERVICE_END_OK, "addInsumo"));
+        }catch(Exception e){
+            Logger.error(MsjLogs.buildMsj(MsjLogs.SERVICE_END_ERROR, "addInsumo"),e);
+        }
         return ok();
     }
     
@@ -88,8 +133,14 @@ public class Application extends Controller {
     Funcion para eliminar un insumo.
     */
     public static Result deleteInsumo(){
-        Insumo insumo= Form.form(Insumo.class).bindFromRequest().get();
-        insumo.delete();
+        try{
+            Logger.debug(MsjLogs.buildMsj(MsjLogs.SERVICE_STARTED, "deleteInsumo"));
+            Insumo insumo= Form.form(Insumo.class).bindFromRequest().get();
+            insumo.delete();
+            Logger.debug(MsjLogs.buildMsj(MsjLogs.SERVICE_END_OK, "deleteInsumo"));
+        }catch(Exception e){
+            Logger.error(MsjLogs.buildMsj(MsjLogs.SERVICE_END_ERROR, "deleteInsumo"),e);
+        }
         return ok();
     }
 
@@ -97,8 +148,14 @@ public class Application extends Controller {
     Funcion para modificar un insumo.
     */
     public static Result editInsumo(){
-        Insumo insumo= Form.form(Insumo.class).bindFromRequest().get();
-        insumo.update();
+        Logger.debug(MsjLogs.buildMsj(MsjLogs.SERVICE_STARTED, "editInsumo"));
+        try{
+            Insumo insumo= Form.form(Insumo.class).bindFromRequest().get();
+            insumo.update();
+            Logger.debug(MsjLogs.buildMsj(MsjLogs.SERVICE_END_OK, "editInsumo"));
+        }catch(Exception e){
+            Logger.error(MsjLogs.buildMsj(MsjLogs.SERVICE_END_ERROR, "editInsumo"),e);
+        }
         return ok();
     }
     
@@ -106,7 +163,14 @@ public class Application extends Controller {
     Funcion para retornar la lista de las ventas.
     */
     public static Result getVentas(){
-        List<Venta> venta = new Model.Finder(String.class, Venta.class).all();
+        Logger.debug(MsjLogs.buildMsj(MsjLogs.SERVICE_STARTED, "getVentas"));
+        List<Venta> venta = new ArrayList<Venta>();
+        try{
+            venta = new Model.Finder(String.class, Venta.class).all();
+            Logger.debug(MsjLogs.buildMsj(MsjLogs.SERVICE_END_OK, "getVentas"));
+        }catch(Exception e){
+            Logger.error(MsjLogs.buildMsj(MsjLogs.SERVICE_END_ERROR, "getVentas"),e);
+        }
         return ok(toJson(venta));
     }
     
@@ -114,13 +178,19 @@ public class Application extends Controller {
     Funcion para agregar una venta.
     */
     public static Result addVenta(){
-        Venta venta= Form.form(Venta.class).bindFromRequest().get();
+        Logger.debug(MsjLogs.buildMsj(MsjLogs.SERVICE_STARTED, "addVenta"));
+        try{
+            Venta venta= Form.form(Venta.class).bindFromRequest().get();
 
-        for(Insumo insumo:venta.producto.insumos){
-            insumo.stock-=venta.cantidad;
-            insumo.update();
+            for(Insumo insumo:venta.producto.insumos){
+                insumo.stock-=venta.cantidad;
+                insumo.update();
+            }
+            venta.save(); 
+            Logger.debug(MsjLogs.buildMsj(MsjLogs.SERVICE_END_OK, "addVenta"));
+        }catch(Exception e){
+            Logger.error(MsjLogs.buildMsj(MsjLogs.SERVICE_END_ERROR, "addVenta"),e);
         }
-        venta.save(); 
         return ok();
     }
 }
