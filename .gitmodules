@@ -1,0 +1,3 @@
+[submodule "PluginCiaaWizard"]
+	path = PluginCiaaWizard
+	url = https://github.com/feliperey4/PluginCiaaWizard.git
